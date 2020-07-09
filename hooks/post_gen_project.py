@@ -20,18 +20,24 @@ def remove_dir(dirname):
         sys.exit(1)
 
 
+def check_git_repo(repo):
+    if repo:
+        pass
+    return False
+
+
+def clone_repo(repo):
+    print("Cloning repository:")
+    subprocess.call(["git", "clone", "--recursive", repo])
+
+
 def main():
-    # First, see if the git repository listed in the cookiecutter is a real git repository.
-    # If it is, delete the template directory and clone it.
-    # Otherwise, leave it be.
-    if "{{ cookiecutter.keep_epics_base_makefiles }}" == "N":
-        remove_dir("configure")
-        remove_file("Makefile")
-        remove_file(os.path.join("{{ cookiecutter.module_name }}App", "Makefile"))
-        remove_file(os.path.join("{{ cookiecutter.module_name }}App", "Db", "Makefile"))
-        remove_file(
-            os.path.join("{{ cookiecutter.module_name }}App", "src", "Makefile")
-        )
+    module_name = "{{ cookiecutter.module_name }}"
+    repo = "{{ cookiecutter.git_repository }}"
+
+    if check_git_repo(repo):
+        remove_dir(module_name + "-loc")
+        clone_repo(repo)
 
 
 if __name__ == "__main__":
