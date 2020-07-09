@@ -1,0 +1,3 @@
+# This should be the included snippet to configure and run the deployed IOC. It should be loaded with
+#
+#   iocshLoad("$({{cookiecutter.module_name}}_DIR)/{{cookiecutter.module_name}}.iocsh")

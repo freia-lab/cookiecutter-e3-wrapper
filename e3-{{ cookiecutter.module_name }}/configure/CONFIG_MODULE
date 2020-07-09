@@ -1,5 +1,5 @@
 #
-EPICS_MODULE_NAME:=cookiecutter
+EPICS_MODULE_NAME:={{ cookiecutter.module_name }}
 
 EPICS_MODULE_TAG:=master
 #

@@ -13,4 +13,5 @@ core.*
 *_old/
 *PVs.list
 *-loc/*.Makefile
-file-loc/*.Makefile
+{{ cookiecutter.module_name }}-loc/*.Makefile
+.vscode
