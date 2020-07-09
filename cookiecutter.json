@@ -1,0 +1,11 @@
+{
+    "company": "European Spallation Source ERIC",
+    "module_name": "mymodule",
+    "summary": "EPICS {{ cookiecutter.module_name }} module",
+    "full_name": "Your name",
+    "email": "{{ cookiecutter.full_name | lower | replace(' ','.') }}@ess.eu",
+    "keep_epics_base_makefiles": [
+        "Y",
+        "N"
+    ]
+}
