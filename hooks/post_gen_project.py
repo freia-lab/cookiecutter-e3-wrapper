@@ -35,7 +35,7 @@ def check_git_repo(repo):
         path = quote(path, safe="")
 
         try:
-            response = request.urlopen(f"{git_url}api/v4/projects/{path}")
+            response = request.urlopen("{}api/v4/projects/{}".format(git_url, path))
         except urllib.error.HTTPError:
             return False
         return True
@@ -59,9 +59,11 @@ def main():
             remove_dir(module_name + "-loc")
             git("submodule", "add", repo)
         else:
-            print(f">>>> The repository '{repo}' was not found on gitlab.")
+            print(">>>> The repository '{}' was not found on gitlab.".format(repo))
             print(
-                f">>>> Please check that the repository is public, and then re-run 'git submodule add {repo}'."
+                ">>>> Please check that the repository is public, and then re-run 'git submodule add {}'.".format(
+                    repo
+                )
             )
             print(">>>> A template module has been included in the meantime.")
     else:
