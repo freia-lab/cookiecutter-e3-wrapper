@@ -18,7 +18,7 @@ E3_MODULE_VERSION:=master
 #
 
 E3_MODULE_NAME:=$(EPICS_MODULE_NAME)
-E3_MODULE_SRC_PATH:=file-loc
+E3_MODULE_SRC_PATH:={{ cookiecutter.module_name }}
 E3_MODULE_MAKEFILE:=$(EPICS_MODULE_NAME).Makefile
 
 
