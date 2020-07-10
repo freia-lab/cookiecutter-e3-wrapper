@@ -100,7 +100,6 @@ def main():
     if git("init"):
         print(">>>> git repository has been initialized.")
         if check_git_repo(repo):
-            remove_dir(module_name + "-loc")
             git("submodule", "add", repo)
         else:
             create_default_repo(repo)
