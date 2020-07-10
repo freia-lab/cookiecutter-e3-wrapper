@@ -1,5 +1,5 @@
 #
-#  Copyright (c) 2018 - 2020  European Spallation Source ERIC
+#  Copyright (c) 2019 - {% now 'local', '%Y' %}, {{ cookiecutter.company }}
 #
 #  The program is free software: you can redistribute
 #  it and/or modify it under the terms of the GNU General Public License
@@ -15,10 +15,10 @@
 #  this program. If not, see https://www.gnu.org/licenses/gpl-2.0.txt
 #
 # 
-# Author  : Jeong Han Lee
-# email   : han.lee@esss.se
-# Date    : 2020Jul09-1033-09CEST
-# version : 1.0.0
+# Author  : {{ cookiecutter.full_name }}
+# email   : {{ cookiecutter.email }}
+# Date    : {% now 'local', '%Y-%m-%d' %}
+# version : 0.0.0 
 
 TOP:=$(CURDIR)
 
