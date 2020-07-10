@@ -2,9 +2,22 @@ import sys
 import shutil
 import os
 import subprocess
-from urllib import request
-from urllib.parse import quote
-import urllib.error
+
+try:
+    from urllib import request
+except ImportError:
+    print("urllib.request is not installed.")
+    exit(1)
+try:
+    from urllib.parse import quote
+except ImportError:
+    print("urllib.parse.quote is not installed")
+    exit(1)
+try:
+    import urllib.error
+except ImportError:
+    print("urllib.error is not installed")
+    exit(1)
 
 
 def remove_file(filename):
