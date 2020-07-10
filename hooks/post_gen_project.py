@@ -26,7 +26,6 @@ def remove_dir(dirname: str):
 def check_git_repo(repo: str):
     git_url = "https://gitlab.esss.lu.se/"
 
-    repo = repo.strip()
     if repo and repo.startswith(git_url):
         path = repo[len(git_url) :]
         if path.endswith(".git"):
@@ -52,12 +51,21 @@ def git(*args):
 
 
 def main():
-    module_name = "{{ cookiecutter.module_name }}"
-    repo = "{{ cookiecutter.git_repository }}"
+    module_name = "{{ cookiecutter.module_name }}".strip()
+    repo = "{{ cookiecutter.git_repository }}".strip()
 
-    if git("init") and check_git_repo(repo):
-        remove_dir(module_name + "-loc")
-        git("submodule", "add", repo)
+    if git("init"):
+        if check_git_repo(repo):
+            remove_dir(module_name + "-loc")
+            git("submodule", "add", repo)
+        else:
+            print(f">>>> The repository '{repo}' was not found on gitlab.")
+            print(
+                f">>>> Please check that the repository is public, and then re-run 'git submodule add {repo}'."
+            )
+            print(">>>> A template module has been included in the meantime.")
+    else:
+        print(">>>> git is not installed correctly on your machine.")
 
 
 if __name__ == "__main__":
