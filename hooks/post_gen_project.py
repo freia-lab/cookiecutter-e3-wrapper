@@ -7,7 +7,7 @@ from urllib.parse import quote
 import urllib.error
 
 
-def remove_file(filename: str):
+def remove_file(filename):
     if os.path.isfile(filename):
         os.remove(filename)
     else:
@@ -15,7 +15,7 @@ def remove_file(filename: str):
         sys.exit(1)
 
 
-def remove_dir(dirname: str):
+def remove_dir(dirname):
     if os.path.isdir(dirname):
         shutil.rmtree(dirname)
     else:
@@ -23,7 +23,7 @@ def remove_dir(dirname: str):
         sys.exit(1)
 
 
-def check_git_repo(repo: str):
+def check_git_repo(repo):
     git_url = "https://gitlab.esss.lu.se/"
 
     if repo and repo.startswith(git_url):
