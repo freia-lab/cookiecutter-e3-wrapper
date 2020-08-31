@@ -111,7 +111,7 @@ def create_default_repo(repo):
                 "-i",
                 "",
                 "-e",
-                "s/^EPICS_MODULE_TAG/\# EPICS_MODULE_TAG/",
+                "s/^EPICS_MODULE_TAG/# EPICS_MODULE_TAG/",
                 "configure/CONFIG_MODULE",
             ]
         )
