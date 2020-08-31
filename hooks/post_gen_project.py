@@ -104,6 +104,27 @@ def create_default_repo(repo):
     # For now, we should remove the Makefile.E3 file in the module, since that is for the conda version.
     remove_file("{{ cookiecutter.module_name }}/Makefile.E3")
 
+    if sys.platform == "darwin":
+        subprocess.call(
+            [
+                "sed",
+                "-i",
+                "",
+                "-e",
+                "s/^EPICS_MODULE_TAG/\# EPICS_MODULE_TAG/",
+                "configure/CONFIG_MODULE",
+            ]
+        )
+    elif sys.platform == "linux":
+        subprocess.call(
+            [
+                "sed",
+                "-i",
+                "s/^EPICS_MODULE_TAG$/# EPICS_MODULE_TAG\1/",
+                "configure/CONFIG_MODULE",
+            ]
+        )
+
 
 def main():
     module_name = "{{ cookiecutter.module_name }}".strip()
