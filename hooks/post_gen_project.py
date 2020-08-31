@@ -37,22 +37,34 @@ def remove_dir(dirname):
         sys.exit(1)
 
 
-def check_git_repo(repo):
-    git_url = "https://gitlab.esss.lu.se/"
+def git_api_call(path, api_url):
+    try:
+        response = request.urlopen("{}/{}".format(api_url, path))
+    except urllib.error.HTTPError:
+        return False
+    return True
 
-    if repo and repo.startswith(git_url):
-        path = repo[len(git_url) :]
+
+def check_git_repo(repo):
+    gitlab_url = "https://gitlab.esss.lu.se/"
+    github_url = "https://github.com/"
+
+    if repo and repo.startswith(gitlab_url):
+        path = repo[len(gitlab_url) :]
         if path.endswith(".git"):
             path = path[:-4]
 
         # URL Encode the path
         path = quote(path, safe="")
+        return git_api_call(path, "{}api/v4/projects".format(gitlab_url))
 
-        try:
-            response = request.urlopen("{}api/v4/projects/{}".format(git_url, path))
-        except urllib.error.HTTPError:
-            return False
-        return True
+    elif repo and repo.startswith(github_url):
+        path = repo[len(github_url) :]
+        if path.endswith(".git"):
+            path = path[:-4]
+
+        return git_api_call(path, "https://api.github.com/repos")
+
     return False
 
 
@@ -66,7 +78,7 @@ def git(*args):
 
 def create_default_repo(repo):
     if repo:
-        print(">>>> The repository '{}' was not found on gitlab.".format(repo))
+        print(">>>> The repository '{}' was not found.".format(repo))
         print(
             ">>>> Please check that the repository is public, and then re-run 'git submodule add {}'.".format(
                 repo
