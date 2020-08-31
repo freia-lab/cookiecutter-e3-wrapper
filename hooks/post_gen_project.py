@@ -120,7 +120,7 @@ def create_default_repo(repo):
             [
                 "sed",
                 "-i",
-                "s/^EPICS_MODULE_TAG$/# EPICS_MODULE_TAG\1/",
+                "s/^EPICS_MODULE_TAG/# EPICS_MODULE_TAG/",
                 "configure/CONFIG_MODULE",
             ]
         )
