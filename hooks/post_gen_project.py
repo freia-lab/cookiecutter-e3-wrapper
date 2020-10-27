@@ -1,3 +1,4 @@
+from __future__ import print_function
 import sys
 import shutil
 import os
@@ -6,19 +7,11 @@ from cookiecutter.main import cookiecutter
 
 try:
     from urllib import request
-except ImportError:
-    print("urllib.request is not installed.")
-    exit(1)
-try:
     from urllib.parse import quote
-except ImportError:
-    print("urllib.parse.quote is not installed")
-    exit(1)
-try:
     import urllib.error
 except ImportError:
-    print("urllib.error is not installed")
-    exit(1)
+    print("Warning: urllib is not installed.", file=sys.stderr)
+    request = None
 
 
 def remove_file(filename):
@@ -37,7 +30,13 @@ def remove_dir(dirname):
         sys.exit(1)
 
 
-def git_api_call(path, api_url):
+def git_api_call(path, api_url, quote_path=False):
+    # Fall through in case urllib did not import correctly.
+    if request is None:
+        return False
+
+    if quote_path:
+        path = quote(path, safe="")
     try:
         response = request.urlopen("{}/{}".format(api_url, path))
     except urllib.error.HTTPError:
@@ -55,8 +54,9 @@ def check_git_repo(repo):
             path = path[:-4]
 
         # URL Encode the path
-        path = quote(path, safe="")
-        return git_api_call(path, "{}api/v4/projects".format(gitlab_url))
+        return git_api_call(
+            path, "{}api/v4/projects".format(gitlab_url), quote_path=True
+        )
 
     elif repo and repo.startswith(github_url):
         path = repo[len(github_url) :]
