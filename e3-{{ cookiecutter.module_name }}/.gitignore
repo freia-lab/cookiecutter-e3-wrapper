@@ -17,3 +17,4 @@ core.*
 .vscode
 cellMods/
 testMods*/
+.DS_Store

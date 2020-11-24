@@ -5,23 +5,16 @@ EPICS_MODULE_TAG:=master
 #
 E3_MODULE_VERSION:=master
 
-# DEPENDENT MODULE VERSION
-# For Example, 
+# Dependent module versions
+# For example:
 #ASYN_DEP_VERSION:=4.36.0
 
-#
-# 
-#
-#E3_KMOD_SRC_PATH:=$(E3_MODULE_SRC_PATH)
-#
-# In most case, we don't need to touch the following variables.
-#
-
+# In most cases, we don't need to touch the following variables.
 E3_MODULE_NAME:=$(EPICS_MODULE_NAME)
 E3_MODULE_SRC_PATH:={{ cookiecutter.module_name }}
 E3_MODULE_MAKEFILE:=$(EPICS_MODULE_NAME).Makefile
 
 
 -include $(TOP)/configure/CONFIG_OPTIONS
-# The definitions shown below can also be placed in an untracked CONFIG_MODULE.local
+# The definitions can also be overridden an untracked CONFIG_MODULE.local
 -include $(TOP)/configure/CONFIG_MODULE.local
