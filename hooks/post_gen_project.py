@@ -1,3 +1,4 @@
+from __future__ import print_function
 import sys
 import shutil
 import os
@@ -6,19 +7,20 @@ from cookiecutter.main import cookiecutter
 
 try:
     from urllib import request
-except ImportError:
-    print("urllib.request is not installed.")
-    exit(1)
-try:
     from urllib.parse import quote
-except ImportError:
-    print("urllib.parse.quote is not installed")
-    exit(1)
-try:
     import urllib.error
 except ImportError:
-    print("urllib.error is not installed")
-    exit(1)
+    print(
+        """Warning: urllib is not installed. As a consequence, the remote repository will not be
+fetched. If you would like to add the remote as a git submodule, run the following
+commands:
+    
+    rm -rf e3-{{ cookiecutter.module_name }}
+    git submodule add {{ cookiecutter.git_repository }} e3-{{ cookiecutter.module_name }}
+    git submodule init""",
+        file=sys.stderr,
+    )
+    request = None
 
 
 def remove_file(filename):
@@ -37,7 +39,13 @@ def remove_dir(dirname):
         sys.exit(1)
 
 
-def git_api_call(path, api_url):
+def git_api_call(path, api_url, quote_path=False):
+    # Fall through in case urllib did not import correctly.
+    if request is None:
+        return False
+
+    if quote_path:
+        path = quote(path, safe="")
     try:
         response = request.urlopen("{}/{}".format(api_url, path))
     except urllib.error.HTTPError:
@@ -55,8 +63,9 @@ def check_git_repo(repo):
             path = path[:-4]
 
         # URL Encode the path
-        path = quote(path, safe="")
-        return git_api_call(path, "{}api/v4/projects".format(gitlab_url))
+        return git_api_call(
+            path, "{}api/v4/projects".format(gitlab_url), quote_path=True
+        )
 
     elif repo and repo.startswith(github_url):
         path = repo[len(github_url) :]
@@ -78,13 +87,16 @@ def git(*args):
 
 def create_default_repo(repo):
     if repo:
-        print(">>>> The repository '{}' was not found.".format(repo))
+        print(">>>> The repository '{}' was not found.".format(repo), file=sys.stderr)
         print(
             ">>>> Please check that the repository is public, and then re-run 'git submodule add {}'.".format(
                 repo
-            )
+            ),
+            file=sys.stderr,
         )
-        print(">>>> A template module has been included in the meantime.")
+        print(
+            ">>>> A template module has been included in the meantime.", file=sys.stderr
+        )
 
     # Create project from the cookiecutter-pypackage.git repo template
     cookiecutter(
@@ -127,7 +139,6 @@ def create_default_repo(repo):
 
 
 def main():
-    module_name = "{{ cookiecutter.module_name }}".strip()
     repo = "{{ cookiecutter.git_repository }}".strip()
 
     if git("init"):
@@ -137,7 +148,7 @@ def main():
         else:
             create_default_repo(repo)
     else:
-        print(">>>> git is not installed correctly on your machine.")
+        print(">>>> git is not installed correctly on your machine.", file=sys.stderr)
 
 
 if __name__ == "__main__":
