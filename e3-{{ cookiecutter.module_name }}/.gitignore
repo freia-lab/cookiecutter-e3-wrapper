@@ -15,3 +15,5 @@ core.*
 *-loc/*.Makefile
 {{ cookiecutter.module_name }}/*.Makefile
 .vscode
+cellMods/
+testMods*/
