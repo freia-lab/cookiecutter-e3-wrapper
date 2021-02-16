@@ -1,8 +1,8 @@
 #
-EPICS_BASE?={{ cookiecutter.epics_base_location }}
+EPICS_BASE:={{ cookiecutter.epics_base_location }}
 
-E3_REQUIRE_NAME?=require
-E3_REQUIRE_VERSION?={{ cookiecutter.require_version }}
+E3_REQUIRE_NAME:=require
+E3_REQUIRE_VERSION:={{ cookiecutter.require_version }}
 
 # The definitions shown below can also be placed in an untracked RELEASE.local
 -include $(TOP)/../../RELEASE.local
