@@ -114,7 +114,12 @@ def create_default_repo(repo):
     )
 
     # For now, we should remove the Makefile.E3 file in the module, since that is for the conda version.
-    remove_file("{{ cookiecutter.module_name }}/Makefile.E3")
+    remove_files = ["Makefile.E3", "README.md", "LICENSE", ".gitignore"]
+    remove_dirs = ["cmds", "iocsh"]
+    for f in remove_files:
+        remove_file(os.path.join("{{ cookiecutter.module_name }}", f))
+    for d in remove_dirs:
+        remove_dir(os.path.join("{{ cookiecutter.module_name }}", d))
 
     if sys.platform == "darwin":
         subprocess.call(
