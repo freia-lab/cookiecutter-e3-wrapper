@@ -7,7 +7,7 @@ E3_MODULE_VERSION:=master
 
 # Dependent module versions
 # For example:
-#ASYN_DEP_VERSION:=4.36.0
+#ASYN_DEP_VERSION:=4.41.0
 
 # In most cases, we don't need to touch the following variables.
 E3_MODULE_NAME:=$(EPICS_MODULE_NAME)
