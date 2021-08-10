@@ -65,7 +65,7 @@ APPSRC:=$(APP)/src
 
 ############################################################################
 #
-# Add any files that should be copied to $(module)/Db
+# Add any files that should be copied to $(module)/db
 #
 ############################################################################
 
