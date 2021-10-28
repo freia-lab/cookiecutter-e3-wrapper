@@ -1,5 +1,5 @@
 EPICS_MODULE_NAME := {{ cookiecutter.module_name }}
-EPICS_MODULE_TAG := master
+EPICS_MODULE_TAG := {{ cookiecutter.module_version }}
 
 E3_MODULE_VERSION := {{ cookiecutter.module_version }}
 E3_MODULE_NAME := {{ cookiecutter.module_name|lower }}
