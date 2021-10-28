@@ -36,7 +36,7 @@ For further targets, type `make`.
 ## Usage
 
 ```sh
-$ iocsh.bash -r examplemodule
+$ iocsh.bash -r "{{ cookiecutter.module_name }}"
 ```
 
 ## Additional information

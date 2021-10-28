@@ -15,26 +15,22 @@ Generate an e3 wrapper:
 $ cookiecutter git+https://gitlab.esss.lu.se/ics-cookiecutter/cookiecutter-e3-wrapper.git
 ```
 
-As this is not easy to remember, you can add an alias in your `~/.bash_profile`:
-
-```
-alias e3-wrapper='cookiecutter git+https://gitlab.esss.lu.se/ics-cookiecutter/cookiecutter-e3-wrapper.git'
-```
-
 ## Usage notes
 
 You will be prompted for the following information:
 
-* Company
+* Company/author
 * Module name
 * Module version (N.B.! do not use the default `master`)
 * Summary/description
 * EPICS base version/location
-* Require version
+* *require* version
 * Git repository to include as submodule
 
-If you define a git repository to include as a submodule then it will add it as a git submodule. Otherwise it is recommended to use a utility like `makeBaseApp`.
+If you define a git repository to include as a submodule then it will add it as a git submodule.
 
-To set up your wrapper, consult [e3 pages](https://e3.pages.esss.lu.se).
+If you are building a new module it is recommended to use a utility like `makeBaseApp.pl` from EPICS base or `makeSupport.pl` from asyn.
+
+To configure your wrapper, consult [e3 pages](https://e3.pages.esss.lu.se).
 
 Once you have finished setting up your wrapper, make sure to remove all template comments as well as empty files and directories.
