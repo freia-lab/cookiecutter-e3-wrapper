@@ -1,25 +1,17 @@
-*~  
-*-dev
+# Editor-related
+*~
+.vscode
 
-modules.order
-Module.symvers
-Mkfile.old
+# OS-related
+.DS_Store
 
-core.*
-#*
-.#*
-\#*
+# Common e3 artifacts
 *.local
-\#*
-
-.cvsignore
-*_old/
-
-*PVs.list
+core.*
 *-loc/*.Makefile
 {{ cookiecutter.module_name }}/*.Makefile
 cellMods/
 testMods*/
-
-.vscode
-.DS_Store
+*PVs.list
+pv.list
+dbl

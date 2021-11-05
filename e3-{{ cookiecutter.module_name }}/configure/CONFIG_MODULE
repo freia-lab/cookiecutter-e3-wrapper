@@ -1,20 +1,10 @@
-#
-EPICS_MODULE_NAME:={{ cookiecutter.module_name }}
+EPICS_MODULE_NAME := {{ cookiecutter.module_name }}
+EPICS_MODULE_TAG := {{ cookiecutter.module_version }}
 
-EPICS_MODULE_TAG:=master
-#
-E3_MODULE_VERSION:=master
-
-# Dependent module versions
-# For example:
-#ASYN_DEP_VERSION:=4.41.0
-
-# In most cases, we don't need to touch the following variables.
-E3_MODULE_NAME:=$(EPICS_MODULE_NAME)
-E3_MODULE_SRC_PATH:={{ cookiecutter.module_name }}
-E3_MODULE_MAKEFILE:=$(EPICS_MODULE_NAME).Makefile
-
+E3_MODULE_VERSION := {{ cookiecutter.module_version }}
+E3_MODULE_NAME := {{ cookiecutter.module_name|lower }}
+E3_MODULE_SRC_PATH := $(EPICS_MODULE_NAME)
+E3_MODULE_MAKEFILE := $(E3_MODULE_NAME).Makefile
 
 -include $(TOP)/configure/CONFIG_OPTIONS
-# The definitions can also be overridden an untracked CONFIG_MODULE.local
 -include $(TOP)/configure/CONFIG_MODULE.local

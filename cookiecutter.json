@@ -1,11 +1,10 @@
 {
     "company": "European Spallation Source ERIC",
-    "module_name": "mymodule",
-    "summary": "EPICS {{ cookiecutter.module_name }} module",
-    "full_name": "Your name",
-    "email": "{{ cookiecutter.full_name | lower | replace(' ','.') }}@ess.eu",
+    "module_name": "",
+    "module_version": "main",
+    "summary": "Wrapper for the module {{ cookiecutter.module_name }}",
     "epics_base_version": "7.0.5",
     "epics_base_location": "/epics/base-{{ cookiecutter.epics_base_version }}",
     "require_version": "3.4.1",
-    "git_repository": "https://gitlab.esss.lu.se/epics-modules/{{ cookiecutter.module_name }}.git"
+    "git_repository": ""
 }

@@ -1,39 +1,36 @@
 # e3 wrapper cookiecutter template
 
-[Cookiecutter](https://github.com/audreyr/cookiecutter) template for e3 wrappers.
-
-Once you have finished setting up your wrapper, make sure to remove all template comments as well as empty files and directories.
+Cookiecutter template for e3 wrappers.
 
 ## Prerequisites
 
-- Python3
-- Cookiecutter
+- Python3.6+
+- [`cookiecutter`](https://github.com/audreyr/cookiecutter)
 
 ## Quickstart
 
 Generate an e3 wrapper:
 
-```
+```sh
 $ cookiecutter git+https://gitlab.esss.lu.se/ics-cookiecutter/cookiecutter-e3-wrapper.git
-```
-
-As this is not easy to remember, you can add an alias in your `~/.bash_profile`:
-
-```
-alias e3-wrapper='cookiecutter git+https://gitlab.esss.lu.se/ics-cookiecutter/cookiecutter-e3-wrapper.git'
 ```
 
 ## Usage notes
 
-This cookiecutter recipe is based on [e3TemplateGenerator](https://github.com/icshwi/e3-tools). You will be prompted for the following information:
+You will be prompted for the following information:
 
-* Company
+* Company/author
 * Module name
-* Summary
-* Name
-* email address
+* Module version (N.B.! do not use the default `master`)
+* Summary/description
 * EPICS base version/location
-* Require version
+* *require* version
 * Git repository to include as submodule
 
-If the git repository that you provide exists and is found on the ESS gitlab server, then it will add it as a submodule. Otherwise, it will simply add a local module within the e3 wrapper.
+If you define a git repository to include as a submodule then it will add it as a git submodule.
+
+If you are building a new module it is recommended to use a utility like `makeBaseApp.pl` from EPICS base or `makeSupport.pl` from asyn.
+
+To configure your wrapper, consult [e3 pages](https://e3.pages.esss.lu.se).
+
+Once you have finished setting up your wrapper, make sure to remove all template comments as well as empty files and directories.
