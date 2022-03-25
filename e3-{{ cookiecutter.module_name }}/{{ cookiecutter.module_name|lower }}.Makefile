@@ -28,7 +28,7 @@ ARCH_FILTER += linux-x86_64
 #     ifneq ($(strip $(ASYN_DEP_VERSION)),)
 #       asyn_VERSION=$(ASYN_DEP_VERSION)
 #     endif
-# 
+#
 # with $(ASYN_DEP_VERSION) defined in `configure/CONFIG_MODULE`
 
 # Since this file ({{ cookiecutter.module_name }}.Makefile) is copied into
