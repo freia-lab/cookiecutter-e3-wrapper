@@ -28,7 +28,7 @@ ARCH_FILTER += linux-x86_64
 #     ifneq ($(strip $(ASYN_DEP_VERSION)),)
 #       asyn_VERSION=$(ASYN_DEP_VERSION)
 #     endif
-# 
+#
 # with $(ASYN_DEP_VERSION) defined in `configure/CONFIG_MODULE`
 
 # Since this file ({{ cookiecutter.module_name }}.Makefile) is copied into
@@ -51,29 +51,15 @@ TEMPLATES += $(wildcard $(APPDB)/*.template)
 
 SCRIPTS += $(wildcard ../iocsh/*.iocsh)
 
-SUBS = $(wildcard $(APPDB)/*.substitutions)
-TMPS = $(wildcard $(APPDB)/*.template)
+# Same as with any source or header files, you can also use $SUBS and $TMPS to define
+# database files to be inflated (using MSI), e.g.
+#
+#     SUBS = $(wildcard $(APPDB)/*.substitutions)
+#     TMPS = $(wildcard $(APPDB)/*.template)
 
 USR_DBFLAGS += -I . -I ..
 USR_DBFLAGS += -I $(EPICS_BASE)/db
 USR_DBFLAGS += -I $(APPDB)
-
-.PHONY: db
-db: $(SUBS) $(TMPS)
-
-.PHONY: $(SUBS)
-$(SUBS):
-	@printf "Inflating database ... %44s >>> %40s \n" "$@" "$(basename $(@)).db"
-	@rm -f $(basename $(@)).db.d  $(basename $(@)).db
-	@$(MSI) -D $(USR_DBFLAGS) -o $(basename $(@)).db -S $@ > $(basename $(@)).db.d
-	@$(MSI)    $(USR_DBFLAGS) -o $(basename $(@)).db -S $@
-
-.PHONY: $(TMPS)
-$(TMPS):
-	@printf "Inflating database ... %44s >>> %40s \n" "$@" "$(basename $(@)).db"
-	@rm -f $(basename $(@)).db.d  $(basename $(@)).db
-	@$(MSI) -D $(USR_DBFLAGS) -o $(basename $(@)).db $@ > $(basename $(@)).db.d
-	@$(MSI)    $(USR_DBFLAGS) -o $(basename $(@)).db $@
 
 .PHONY: vlibs
 vlibs:

@@ -1,3 +1,9 @@
-e3-cookiecutter
-.vscode
 .DS_Store
+
+e3-cookiecutter
+
+*~
+*.swp
+*.swo
+
+.vscode
