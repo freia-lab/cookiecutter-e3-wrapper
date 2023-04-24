@@ -7,3 +7,6 @@ run pre-commit:
   image: registry.esss.lu.se/ics-docker/pre-commit:latest
   script:
     - pre-commit run --all-files
+  tags:
+    - cslab
+    - docker
