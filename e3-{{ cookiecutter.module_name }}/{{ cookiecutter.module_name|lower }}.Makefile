@@ -19,11 +19,8 @@ where_am_I := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 include $(E3_REQUIRE_TOOLS)/driver.makefile
 
 # Most modules only need to be built for x86_64
-ARCH_FILTER += linux-x86_64
-
-# If your module has dependencies, you will generate want to include them like
-#
-#     REQUIRED += asyn
+EXCLUDE_ARCHS += linux-ppc64e6500
+EXCLUDE_ARCHS += linux-corei7-poky
 
 # Since this file ({{ cookiecutter.module_name }}.Makefile) is copied into
 # the module directory at build-time, these paths have to be relative
@@ -44,6 +41,16 @@ TEMPLATES += $(wildcard $(APPDB)/*.proto)
 TEMPLATES += $(wildcard $(APPDB)/*.template)
 
 SCRIPTS += $(wildcard ../iocsh/*.iocsh)
+
+# Note that architecture-specific source files can be specified:
+#
+#     SOURCES_linux-x86_64 += ...
+#     SOURCES_linux
+#
+# These are also valid for many of the compile flags specified by e.g.
+#     CFLAGS CXXFLAGS CPPFLAGS
+# i.e.
+#     USR_CFLAGS_linux-ppc64e6500 += ...
 
 # Same as with any source or header files, you can also use $SUBS and $TMPS to define
 # database files to be inflated (using MSI), e.g.
