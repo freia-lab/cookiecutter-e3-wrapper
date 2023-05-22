@@ -22,10 +22,6 @@ include $(E3_REQUIRE_TOOLS)/driver.makefile
 EXCLUDE_ARCHS += linux-ppc64e6500
 EXCLUDE_ARCHS += linux-corei7-poky
 
-# If your module has dependencies, you will generate want to include them like
-#
-#     REQUIRED += asyn
-
 # Since this file ({{ cookiecutter.module_name }}.Makefile) is copied into
 # the module directory at build-time, these paths have to be relative
 # to that path
