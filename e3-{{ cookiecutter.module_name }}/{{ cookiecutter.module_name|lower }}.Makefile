@@ -19,7 +19,8 @@ where_am_I := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 include $(E3_REQUIRE_TOOLS)/driver.makefile
 
 # Most modules only need to be built for x86_64
-ARCH_FILTER += linux-x86_64
+EXCLUDE_ARCHS += linux-ppc64e6500
+EXCLUDE_ARCHS += linux-corei7-poky
 
 # If your module has dependencies, you will generate want to include them like
 #
