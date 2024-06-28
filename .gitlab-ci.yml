@@ -2,11 +2,6 @@
 stages:
   - check
 
-run pre-commit:
-  stage: check
-  image: registry.esss.lu.se/ics-docker/pre-commit:latest
-  script:
-    - pre-commit run --all-files
-  tags:
-    - cslab
-    - docker
+include:
+  - project: "ics-infrastructure/gitlab-ci-yml"
+    file: "PreCommit.gitlab-ci.yml"
