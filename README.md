@@ -12,7 +12,7 @@ Cookiecutter template for e3 wrappers.
 Generate an e3 wrapper:
 
 ```sh
-$ cookiecutter git+https://gitlab.esss.lu.se/ics-cookiecutter/cookiecutter-e3-wrapper.git
+$ cookiecutter [--checkout <tag|commit|branch>] git+https://github.com/freia-lab/cookiecutter-e3-wrapper.git
 ```
 
 ## Usage notes

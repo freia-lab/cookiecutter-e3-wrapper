@@ -51,7 +51,7 @@ def main():
         """
 Your wrapper has been created.
 
-Create the repository on your Git repository manager (e.g. https://gitlab.esss.lu.se)
+Create the repository on your Git repository manager (e.g. https://github.com)
 and add that remote:
 
     $ cd e3-{{ cookiecutter.module_name }}
