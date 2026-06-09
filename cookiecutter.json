@@ -1,5 +1,5 @@
 {
-    "company": "European Spallation Source ERIC",
+    "company": "FREIA Laboratory",
     "module_name": "",
     "module_version": "main",
     "summary": "Wrapper for the module {{ cookiecutter.module_name }}",
